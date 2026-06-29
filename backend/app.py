@@ -3,12 +3,13 @@ import pathlib
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
-from routes import notes
+from routes import notes, search
 
 STATIC_DIR = pathlib.Path("/app/static")
 
 app = FastAPI(title="wiki")
 app.include_router(notes.router)
+app.include_router(search.router)
 
 
 @app.get("/{full_path:path}")
